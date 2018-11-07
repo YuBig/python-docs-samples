@@ -18,13 +18,13 @@ import argparse
 import base64
 import json
 
-# [START import_libraries]
+# [START mle_online_prediction_import_libraries]
 import googleapiclient.discovery
-# [END import_libraries]
+# [END mle_online_prediction_import_libraries]
 import six
 
 
-# [START predict_json]
+# [START mle_online_prediction_predict_json]
 def predict_json(project, model, instances, version=None):
     """Send json data to a deployed model for prediction.
 
@@ -58,10 +58,10 @@ def predict_json(project, model, instances, version=None):
         raise RuntimeError(response['error'])
 
     return response['predictions']
-# [END predict_json]
+# [END mle_online_prediction_predict_json]
 
 
-# [START predict_tf_records]
+# [START mle_online_prediction_predict_tf_records]
 def predict_examples(project,
                      model,
                      example_bytes_list,
@@ -98,10 +98,10 @@ def predict_examples(project,
         raise RuntimeError(response['error'])
 
     return response['predictions']
-# [END predict_tf_records]
+# [END mle_online_prediction_predict_tf_records]
 
 
-# [START census_to_example_bytes]
+# [START mle_online_prediction_census_to_example_bytes]
 def census_to_example_bytes(json_instance):
     """Serialize a JSON example to the bytes of a tf.train.Example.
     This method is specific to the signature of the Census example.
@@ -134,7 +134,7 @@ def census_to_example_bytes(json_instance):
             feature=feature_dict
         )
     ).SerializeToString()
-# [END census_to_example_bytes]
+# [END mle_online_prediction_census_to_example_bytes]
 
 
 def main(project, model, version=None, force_tfrecord=False):
